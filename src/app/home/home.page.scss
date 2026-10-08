@@ -1,0 +1,17 @@
+ion-toolbar{
+  --background: rgb(2, 67, 198);  
+}
+
+ion-content{
+  --background: rgb(255, 247, 201);
+}
+
+ion-item{
+  --min-height: 35px;
+}
+
+ion-img{
+  border-radius: 10px;
+  object-fit: cover;
+  overflow: hidden;
+}

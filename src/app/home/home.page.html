@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title [style]="headerTitleStyle">
+      CICT STUDENTS
+    </ion-title>
+    <ion-label [style]="headerLabelStyle">Nueva Ecija University of Science and Technology | Sumacab Campus</ion-label>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div>
+    @for(bata of students; track bata){
+    <ion-card>
+      <ion-card-header style="background-color: blue; padding: 10px">
+        <ion-card-title style="color: white">{{bata.name}}</ion-card-title>
+        <ion-card-subtitle style="color: white; margin-top: 0px">Student ID: {{bata.id}}</ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <h2 [style]="titleStyle">Student Information</h2>
+        <ion-img [src]="bata.img" [style]="imgStyle"></ion-img>
+        <ion-list>
+          <ion-item [style]="infoStyle">Gender: {{bata.gender}}</ion-item>
+          <ion-item [style]="infoStyle">Course: {{bata.course}}</ion-item>
+          <ion-item [style]="infoStyle">Year level: {{bata.year}}</ion-item>
+          <ion-item>
+            <ion-input label="Age: " labelPlacement="fixed" [(ngModel)]="bata.age" [value]="bata.age"
+              [style]="infoStyle" clearInput fill="outline"></ion-input>
+          </ion-item>
+          <div>
+            @if(bata.age < 18 && bata.age> 0){
+              <ion-label color="warning" [style]="eligibilityStyle">Age is not eligible for specialization
+                picking</ion-label>
+              }@else if(bata.age >= 70){
+              <ion-label color="warning" [style]="eligibilityStyle">Age is too old for specialization
+                picking</ion-label>
+              }@else if(bata.age >= 18){
+              <ion-label color="success" [style]="eligibilityStyle">Age is eligible for specialization
+                picking</ion-label>
+              }@else{
+              <ion-label color="danger" [style]="eligibilityStyle">Age must be 1 and above</ion-label>
+              }
+          </div>
+        </ion-list>
+        <ion-button (click)="saveInfo()" expand="block">Save Information</ion-button>
+      </ion-card-content>
+    </ion-card>
+    }
+  </div>
+</ion-content>
